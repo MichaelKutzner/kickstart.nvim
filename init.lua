@@ -880,10 +880,11 @@ require('lazy').setup({
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
-    ft = { 'scala', 'sbt', 'java' },
+    ft = { 'scala', 'sbt', 'java' }, -- TODO Remove 'java' when using Java LSP
     opts = function()
       local metals_config = require('metals').bare_config()
       metals_config.settings = {
+        serverVersion = '1.6.5',
         inlayHints = {
           byNameParameters = { enable = true },
           hintsInPatternMatch = { enable = true },
@@ -893,6 +894,7 @@ require('lazy').setup({
           typeParameters = { enable = true },
         },
       }
+      metals_config.init_options.statusBarProvider = 'on' -- Disable status blocking bar after save
       metals_config.on_attach = function(client, bufnr)
         -- your on_attach function
       end
