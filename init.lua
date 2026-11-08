@@ -99,7 +99,7 @@ do
   vim.g.maplocalleader = ' '
 
   -- Set to true if you have a Nerd Font installed and selected in the terminal
-  vim.g.have_nerd_font = false
+  vim.g.have_nerd_font = true
 
   -- [[ Setting options ]]
   --  See `:help vim.o`
@@ -743,6 +743,21 @@ do
     --
     -- But for many setups, the LSP (`rust_analyzer`) will work just fine
     -- rust_analyzer = {},
+    -- -- C++
+    -- clangd = {},
+    -- cmake = {},
+
+    -- -- Python
+    -- ruff = {},
+    -- ty = {},
+
+    -- -- Rust
+    -- rust_analyzer = {},
+    -- -- -- Typst
+    -- -- tinymist = {},
+    -- -- -- Google's LSP for golang
+    -- -- gopls = {},
+
 
     stylua = {}, -- Used to format Lua code
 
@@ -840,6 +855,7 @@ do
     },
     -- You can also specify external formatters in here.
     formatters_by_ft = {
+      json = { 'jq' },
       -- rust = { 'rustfmt' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
@@ -1018,12 +1034,12 @@ do
   -- require 'kickstart.plugins.indent_line'
   -- require 'kickstart.plugins.lint'
   -- require 'kickstart.plugins.autopairs'
-  -- require 'kickstart.plugins.neo-tree'
+  require 'kickstart.plugins.neo-tree'
 
   -- NOTE: You can add your own plugins, configuration, etc. in `lua/custom/plugins/*.lua`.
   --
   -- For independent modules, uncomment the convenience loader:
-  -- require 'custom.plugins'
+  require 'custom.plugins'
   --
   -- `custom.plugins` automatically loads files from that directory, but their
   -- order is unspecified. If plugins depend on each other, keep them in the same
@@ -1034,6 +1050,10 @@ do
   -- require 'custom.plugins.ui'
   -- require 'custom.plugins.git'
 end
+
+-- vim.lsp.enable('metals')
+vim.lsp.enable 'ruff'
+vim.lsp.enable 'ty'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
