@@ -884,7 +884,7 @@ require('lazy').setup({
     opts = function()
       local metals_config = require('metals').bare_config()
       metals_config.settings = {
-        serverVersion = '1.6.5',
+        serverVersion = '1.6.8',
         inlayHints = {
           byNameParameters = { enable = true },
           hintsInPatternMatch = { enable = true },
